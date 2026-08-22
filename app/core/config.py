@@ -11,6 +11,11 @@ class Settings(BaseSettings):
     AWS_SECRET_ACCESS_KEY:str
     MONGODB_URI:str
     MONGODB_DATABASE:str
+    ACCESS_TOKEN_SECRET:str
+    REFRESH_TOKEN_SECRET:str
+    ACCESS_TOKEN_EXPIRY:str
+    REFRESH_TOKEN_EXPIRY:str
+    JWT_ALGORITHM:str="HS256"
     
 
     model_config=SettingsConfigDict(

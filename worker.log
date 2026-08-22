@@ -1,0 +1,27 @@
+18:26:07 Worker f6a7ab42088a4b7a9d29452c293ff335: started with PID 9104, version 2.10.0
+18:26:07 Worker f6a7ab42088a4b7a9d29452c293ff335: subscribing to channel rq:pubsub:f6a7ab42088a4b7a9d29452c293ff335
+18:26:07 *** Listening on rag_queue, chat_queue...
+18:26:07 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: rag_queue
+18:26:07 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: chat_queue
+18:26:07 chat_queue: app.services.chat_service.process_chat('What is even loop in node js') (f4698e45-51fe-48b0-91e5-488dbe9f38fa)
+18:26:13 Successfully completed app.services.chat_service.process_chat('What is even loop in node js') job in 0:00:05.651974s on worker f6a7ab42088a4b7a9d29452c293ff335
+18:26:13 chat_queue: Job OK (f4698e45-51fe-48b0-91e5-488dbe9f38fa)
+18:26:13 Result is kept for 500 seconds
+18:38:44 chat_queue: app.services.chat_service.process_chat('What is event loop in node js') (5dafc092-d910-408e-8235-3bdd9f7ad36e)
+18:38:53 Successfully completed app.services.chat_service.process_chat('What is event loop in node js') job in 0:00:08.322715s on worker f6a7ab42088a4b7a9d29452c293ff335
+18:38:53 chat_queue: Job OK (5dafc092-d910-408e-8235-3bdd9f7ad36e)
+18:38:53 Result is kept for 500 seconds
+18:38:53 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: rag_queue
+18:38:53 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: chat_queue
+18:52:23 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: rag_queue
+18:52:23 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: chat_queue
+19:05:53 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: rag_queue
+19:05:53 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: chat_queue
+19:19:23 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: rag_queue
+19:19:23 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: chat_queue
+19:32:53 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: rag_queue
+19:32:53 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: chat_queue
+19:46:23 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: rag_queue
+19:46:23 Worker f6a7ab42088a4b7a9d29452c293ff335: cleaning registries for queue: chat_queue
+19:47:47 Worker f6a7ab42088a4b7a9d29452c293ff335 [PID 9104]: warm shut down requested
+19:47:47 Worker f6a7ab42088a4b7a9d29452c293ff335: unsubscribing from channel rq:pubsub:f6a7ab42088a4b7a9d29452c293ff335

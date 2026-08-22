@@ -1,4 +1,4 @@
-from app.core.database import mongo_client
+from app.db.database import mongo_client
 
 
 try:
