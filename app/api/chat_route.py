@@ -19,7 +19,7 @@ def get_chat(message=Query(...,description="will accept message")):
 
 @router.post("/result")
 def get_result(job_id:str=Query(...,description="provide job id to get result")):
-    job=chat_queue.fetch_job(job_id=job_id)
+    job=chat_queue.fetch_job(job_id)
     result=job.return_value()
     return {
         "status":"retrived",

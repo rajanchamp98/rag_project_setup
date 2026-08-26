@@ -20,3 +20,4 @@ async def get_user_by_id(user_id:str):
             "_id":ObjectId(user_id)
         }
     )
+    return result
