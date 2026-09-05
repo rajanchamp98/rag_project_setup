@@ -2,7 +2,7 @@ from pydantic import BaseModel,Field
 
 
 class CreateThreadRequest(BaseModel):
-    title:str | None = Field(...,default=None,max_length=300)
+    title:str | None
 
 
 class ThreadResponse(BaseModel):

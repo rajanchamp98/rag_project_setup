@@ -16,6 +16,12 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRY:str
     REFRESH_TOKEN_EXPIRY:str
     JWT_ALGORITHM:str="HS256"
+    OPENSEARCH_ENDPOINT:str
+    OPENSEARCH_SERVICE:str
+    OPENSEARCH_INDEX: str = "documents"
+    S3_BUCKET_NAME:str
+    TEMP_INGESTION_DOC:str
+    RERANK_MODEL_NAME:str
     
 
     model_config=SettingsConfigDict(
