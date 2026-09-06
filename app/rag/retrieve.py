@@ -14,7 +14,7 @@ def vector_search(
 
     query_embedding=embedding_model.embed_query(query)
 
-    print(f"query dimenssion is {len(query_embedding)}")
+    # print(f"query dimenssion is {len(query_embedding)}")
 
 
     client=get_opensearch_client()

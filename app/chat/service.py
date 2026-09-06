@@ -4,7 +4,8 @@ from collections.abc import AsyncIterable
 from fastapi.sse import ServerSentEvent,EventSourceResponse
 import secrets
 from app.llm.chat_model import get_chat_model
-from app.rag.retrieve import get_retrivers
+from app.rag.retriver_pipeline import retrieve_documents
+from app.rag.augmentation import build_context,build_prompt,built_history
 
 
 
@@ -41,6 +42,10 @@ async def stream_chat(user_id,thread_id,message)->AsyncIterable[ServerSentEvent]
         limit=20        
     )
 
+    history_context = built_history(history)
+
+
+
     yield ServerSentEvent(
         event="status",
         data={
@@ -48,38 +53,66 @@ async def stream_chat(user_id,thread_id,message)->AsyncIterable[ServerSentEvent]
         }
     )
 
-    assistent_response=""
+    final_response=""
 
     #RAG RELATED WORK START HERE
 
-    reteriver=get_retrivers()
+    retrieved_documents = retrieve_documents(
+        query=message,
+        user_id=str(user_id),
+    )
 
-    content=reteriver.invoke(message)
+    context = build_context(
+        retrieved_documents
+    )
 
-    SYSTEM_PROMPT="""
-    
-"""
+    prompt = build_prompt(
+        query=message,
+        context=context,
+        history=history_context
+    )
 
+    llm = get_chat_model()
 
+    # print(prompt)
+
+    # response = await llm.ainvoke(prompt)
+
+    # if isinstance(response.content, str):
+    #     assistant_response = response.content
+    # else:
+    #     assistant_response = "".join(
+    #     block["text"]
+    #     for block in response.content
+    #     if isinstance(block, dict) and block.get("type") == "text"
+    # )
+
+    # print("\n========== LLM RESPONSE ==========")
+    # print(assistant_response)
+    # print("==================================\n")
 
 
 
 
     ## RAG RELATED WORK END HERE 
 
-    response=(
-        "Test the response1"
-        "Test The response2"
-        "Test The response3"
-        "Test The response4"
-        "Test The response5"
-        "Test The response6"
-    )
+    async for chunk in  llm.astream(prompt):
+        if(not chunk.content):
+            continue
+        if isinstance(chunk.content, str):
+         token = chunk.content
 
-    for token in response.split():
-        token+=" "
+        else:
+         token = "".join(
+            block.get("text", "")
+            for block in chunk.content
+            if isinstance(block, dict)
+        )
 
-        assistent_response+=token
+         if not token:
+            continue
+
+        final_response+=token
 
         yield ServerSentEvent(
             event="token",
@@ -88,7 +121,7 @@ async def stream_chat(user_id,thread_id,message)->AsyncIterable[ServerSentEvent]
 
 
 
-    await create_message(user_id=user_id,thread_id=thread_id,content=assistent_response,role="assistant")
+    await create_message(user_id=user_id,thread_id=thread_id,content=final_response,role="assistant")
 
     yield ServerSentEvent(
         event="done",

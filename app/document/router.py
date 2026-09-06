@@ -17,9 +17,6 @@ async def upload_route(
     current_user=Depends(get_current_user)
 ):
 
-    print("========== UPLOAD ROUTE HIT ==========")
-    print("filename:", file.filename)
-    print("content_type:", file.content_type)
     if (file.content_type not in  ["application/pdf","application/octet-stream"]):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
