@@ -18,9 +18,5 @@ rag_queue=Queue(
     connection=redis_connection
 )
 
-# for chat queue
-chat_queue=Queue(
-    name="chat_queue",
-    connection=redis_connection
-)
+
 

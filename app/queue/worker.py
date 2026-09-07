@@ -1,10 +1,10 @@
 from rq import Worker
-from app.queue.config import redis_connection,rag_queue,chat_queue
+from app.queue.config import redis_connection,rag_queue
 
 
 def start_worker()-> None:
     worker=Worker(
-        queues=[rag_queue,chat_queue],
+        queues=[rag_queue],
         connection=redis_connection
     )
 
