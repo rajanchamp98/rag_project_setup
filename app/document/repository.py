@@ -4,7 +4,8 @@ from datetime import datetime,timezone
 
 document_collection=mongo_db["documents"]
 
-
+async def create_document(document:dict):
+   await  document_collection.insert_one(document)
 
 async def update_document(
     document_id: str,

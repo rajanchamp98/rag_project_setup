@@ -9,7 +9,6 @@ redis_connection=Redis.from_url(
     url=settings.REDIS_URL,
 )
 
-
 """RQ queue for RAG ingetion"""
 
 # for document queue

@@ -23,6 +23,13 @@ def index_chunk(
 
     for index,(chunk,embedding) in enumerate(zip(chunks,embeddings)):
         chunk_id=f"{document_id}_{index}"
+        metadata = chunk.metadata or {}
+
+        clean_metadata = {
+            "page": metadata.get("page"),
+            "page_label": metadata.get("page_label"),
+            "total_pages": metadata.get("total_pages"),
+        }
         actions.append({
             "_index":settings.OPENSEARCH_INDEX,
             "_id":chunk_id,
@@ -32,7 +39,7 @@ def index_chunk(
                 "user_id":user_id,
                 "content":chunk.page_content,
                 "embedding":embedding,
-                "metadata":chunk.metadata,
+                "metadata":clean_metadata,
                 "created_at":datetime.now(timezone.utc)
             }
         })
@@ -47,13 +54,19 @@ def index_chunk(
         success,failed=bulk(
             client=client,
             actions=actions,
-            chunk_size=500,
+            chunk_size=250,
+            max_chunk_bytes=5*1024*1024,
             raise_on_error=False
             
         )
 
     print(f"Indexed Chunks : {success}")
-    print(f" Failed chunks :{len(failed)} ")
+    print(f"Failed chunks : {len(failed)}")
+
+    if failed:
+        print("FIRST FAILURE:")
+        print(failed[0])
+        raise RuntimeError(f"Failed to index {len(failed)} chunks")
 
 
 

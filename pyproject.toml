@@ -17,6 +17,7 @@ dependencies = [
     "charset-normalizer==3.5.1",
     "click==8.4.2",
     "croniter==6.2.4",
+    "deepeval>=0.21.28",
     "detect-installer==0.1.0",
     "distro==1.9.0",
     "dnspython==2.8.0",
