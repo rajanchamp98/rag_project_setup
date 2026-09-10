@@ -38,11 +38,11 @@ def vector_search(
                 }
             }
         },
-        "post_filter":{
-            "term":{
-                "user_id":user_id
-            }
-        }
+        # "post_filter":{
+        #     "term":{
+        #         "user_id":user_id
+        #     }
+        # }
     }
 
     response=client.search(
@@ -89,13 +89,13 @@ def bm25_search(query:str,user_id:str,k:int=5):
                         }
                     }
                 ],
-                "filter": [
-                    {
-                        "term": {
-                            "user_id": user_id
-                        }
-                    }
-                ]
+                # "filter": [
+                #     {
+                #         "term": {
+                #             "user_id": user_id
+                #         }
+                #     }
+                # ]
             }
         }
     }

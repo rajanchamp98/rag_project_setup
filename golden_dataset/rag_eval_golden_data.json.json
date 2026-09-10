@@ -1,0 +1,302 @@
+[
+  {
+    "id": "g001",
+    "query": "Why was Node.js created, according to the book?",
+    "ideal_answer": "Node.js was created in response to slow web servers that blocked on I/O tasks such as filesystem and network access. Its non-blocking, asynchronous I/O model allows a server to continue handling other requests while waiting for slow operations.",
+    "source": "page1-2"
+  },
+  {
+    "id": "g002",
+    "query": "What is npm and why is Node.js's small core-module philosophy useful?",
+    "ideal_answer": "npm is the package manager bundled with Node.js. Node.js keeps the built-in module collection relatively small to encourage a rich third-party ecosystem and avoid slowing module development through the Node.js release schedule.",
+    "source": "page1-2"
+  },
+  {
+    "id": "g003",
+    "query": "What types of projects does the book identify as particularly suitable for Node.js?",
+    "ideal_answer": "The book highlights HTTP APIs, distributed systems, command-line tools, and cross-platform desktop applications.",
+    "source": "page2"
+  },
+  {
+    "id": "g004",
+    "query": "When does the book say Node.js may not be the best choice?",
+    "ideal_answer": "Node.js may not be the best choice for workloads that require squeezing maximum performance from computing resources, especially CPU-bound or highly specialized tasks. The book notes that lower-level languages such as C, C++, Go, Java, or Rust can be better suited.",
+    "source": "page3"
+  },
+  {
+    "id": "g005",
+    "query": "What is a key difference between JavaScript running in Node.js and JavaScript running in a browser?",
+    "ideal_answer": "Node.js does not provide browser globals and browser APIs such as window and document. Node.js instead exposes server-side capabilities such as filesystem and networking APIs through its own modules.",
+    "source": "page3-4"
+  },
+  {
+    "id": "g006",
+    "query": "How does a minimal Node.js HTTP server use the core http module?",
+    "ideal_answer": "It loads the http module with require('http'), calls http.createServer() with a request listener, and calls listen() on a port to accept requests.",
+    "source": "page1, 4-7"
+  },
+  {
+    "id": "g007",
+    "query": "What does process.env contain in Node.js?",
+    "ideal_answer": "process.env is an object containing the environment variables of the currently running process. The book uses process.env.PORT so the server port can be controlled by the environment.",
+    "source": "page7"
+  },
+  {
+    "id": "g008",
+    "query": "What are req and res in an http.createServer request listener?",
+    "ideal_answer": "req is the request object containing information about the incoming HTTP request, such as its URL and headers. res is the response object used to send data back to the client and end the connection.",
+    "source": "page7"
+  },
+  {
+    "id": "g009",
+    "query": "How does the book return JSON from a core Node.js HTTP server?",
+    "ideal_answer": "Set the response Content-Type to application/json and send JSON.stringify(...) through res.end().",
+    "source": "page8-9"
+  },
+  {
+    "id": "g010",
+    "query": "How is basic routing implemented with Node.js core http in the book?",
+    "ideal_answer": "The request listener examines req.url and uses conditionals to select the appropriate response function. The example routes '/' to plain text, '/json' to JSON, and unknown paths to a 404 response.",
+    "source": "page11-13"
+  },
+  {
+    "id": "g011",
+    "query": "What does HTTP status 404 mean in the book's routing example?",
+    "ideal_answer": "It tells the client that communication with the server was successful but the server could not find the requested data or resource.",
+    "source": "page12"
+  },
+  {
+    "id": "g012",
+    "query": "How does the book implement a dynamic /echo endpoint using core Node.js modules?",
+    "ideal_answer": "It reads the input query parameter with querystring.parse(), then returns JSON containing the original input, uppercase version, character count, and reversed string.",
+    "source": "page13-15"
+  },
+  {
+    "id": "g013",
+    "query": "What does querystring.parse() return for a query string such as input=someinput?",
+    "ideal_answer": "It returns a JavaScript object containing query-parameter key/value pairs, for example { input: 'someinput' }. The leading '?' is not passed to querystring.parse().",
+    "source": "page14-15"
+  },
+  {
+    "id": "g014",
+    "query": "How does the book serve static files with Node.js core modules?",
+    "ideal_answer": "It maps the /static URL path to a local public directory, creates a read stream with fs.createReadStream(), and pipes that stream into the HTTP response. Stream errors are handled by returning a 404 response.",
+    "source": "page16-18"
+  },
+  {
+    "id": "g015",
+    "query": "Why is fs.createReadStream().pipe(res) useful for static file serving?",
+    "ideal_answer": "It connects the filesystem data source directly to the HTTP response and efficiently transfers the file without first loading the whole file into memory.",
+    "source": "page17-18"
+  },
+  {
+    "id": "g016",
+    "query": "What does Express provide compared with Node.js core http in the book?",
+    "ideal_answer": "Express acts as a framework around core HTTP and provides a built-in router plus helpers that simplify common operations such as JSON responses and query-parameter handling.",
+    "source": "page20-23"
+  },
+  {
+    "id": "g017",
+    "query": "How does app.get('/json', respondJson) differ from the earlier core-http routing example?",
+    "ideal_answer": "Express associates the URL path and HTTP method directly with the handler, so respondJson runs only for GET requests to /json. Core-http routing in the earlier example checked req.url without restricting the method.",
+    "source": "page22"
+  },
+  {
+    "id": "g018",
+    "query": "What does Express's res.json() do?",
+    "ideal_answer": "It sends a JSON response, automatically setting the appropriate Content-Type header and stringifying the response body.",
+    "source": "page23"
+  },
+  {
+    "id": "g019",
+    "query": "Where does Express expose parsed query parameters?",
+    "ideal_answer": "Express makes parsed query parameters available on req.query. For example, ?input=hi can be accessed through req.query.input.",
+    "source": "page23"
+  },
+  {
+    "id": "g020",
+    "query": "How does the Express wildcard route app.get('/static/*', respondStatic) work in the book?",
+    "ideal_answer": "It matches paths beginning with /static/. The wildcard portion is available as req.params[0], which the example uses as the filename relative to the public directory.",
+    "source": "page24"
+  },
+  {
+    "id": "g021",
+    "query": "Why does the book use Server-Sent Events (SSE) for the chat example?",
+    "ideal_answer": "SSE allows the server to push messages to the browser without requiring the browser to repeatedly poll for updates. The book presents SSE as a simpler alternative to WebSockets for this one-way server-to-browser use case.",
+    "source": "page24-27"
+  },
+  {
+    "id": "g022",
+    "query": "What is the role of EventSource in the book's chat client?",
+    "ideal_answer": "The browser creates an EventSource for the /sse endpoint and handles incoming messages with an onmessage function, adding each event's data to the chat UI.",
+    "source": "page26-27"
+  },
+  {
+    "id": "g023",
+    "query": "What is the Node.js callback convention for asynchronous APIs?",
+    "ideal_answer": "In Node.js APIs, the callback is conventionally the last argument, and the callback's first argument is the error (or null when there is no error).",
+    "source": "page37-38"
+  },
+  {
+    "id": "g024",
+    "query": "Why does Node.js use asynchronous filesystem operations?",
+    "ideal_answer": "Filesystem access is slow relative to CPU and memory operations. Asynchronous filesystem APIs allow the application to continue doing other work while waiting for I/O to finish.",
+    "source": "page37-38"
+  },
+  {
+    "id": "g025",
+    "query": "What is a Promise in the book's explanation?",
+    "ideal_answer": "A Promise is an object representing a future action and its result. It differs from a callback, which is a convention for passing a function to be called later.",
+    "source": "page50-51"
+  },
+  {
+    "id": "g026",
+    "query": "How do then() and catch() differ when working with promises?",
+    "ideal_answer": "then() handles a successful promise result, while catch() handles an error or rejection.",
+    "source": "page50-51"
+  },
+  {
+    "id": "g027",
+    "query": "Why can a naive forEach() with asynchronous fs.readFile() calls print 'done!' too early?",
+    "ideal_answer": "The asynchronous readFile operations do not block the forEach loop. The loop finishes and prints 'done!' before the individual reads complete, and the results may also arrive out of order.",
+    "source": "page51"
+  },
+  {
+    "id": "g028",
+    "query": "What problem does Promise.all() solve in the book's directory-reading example?",
+    "ideal_answer": "It combines an array of promises into a single promise, allowing the program to wait for all file reads to complete and receive an array of their results. Errors also propagate through the promise chain.",
+    "source": "page54-55"
+  },
+  {
+    "id": "g029",
+    "query": "What is the relationship between async/await and promises?",
+    "ideal_answer": "The book explains that async/await uses promises underneath. Declaring a function async makes it return a promise, and await allows promise results to be handled in a synchronous-looking style without blocking other tasks.",
+    "source": "page56, 59-61"
+  },
+  {
+    "id": "g030",
+    "query": "Why must await be used inside an async function in the book's examples?",
+    "ideal_answer": "The book's examples use await within special async functions. Declaring the function async enables await and also means the function itself returns a promise.",
+    "source": "page56-59"
+  },
+  {
+    "id": "g031",
+    "query": "How does async/await simplify error handling?",
+    "ideal_answer": "It allows promise-based operations to be wrapped in ordinary try/catch blocks, so errors can be handled in a style similar to synchronous code.",
+    "source": "page56-61"
+  },
+  {
+    "id": "g032",
+    "query": "Why is Promise.all() needed after using map() with async callbacks?",
+    "ideal_answer": "An async callback passed to map() produces promises, so the resulting array contains promises rather than resolved values. Promise.all() converts that array into one promise representing all results, which can then be awaited.",
+    "source": "page58-59"
+  },
+  {
+    "id": "g033",
+    "query": "How are event emitters different from callbacks and promises?",
+    "ideal_answer": "Callbacks and promises are generally used for one-and-done asynchronous actions, whereas event emitters are designed for actions that may happen repeatedly or a variable number of times in the future.",
+    "source": "page61-62"
+  },
+  {
+    "id": "g034",
+    "query": "How does readline demonstrate event emitters in the book?",
+    "ideal_answer": "A readline interface watches process.stdin and listens for 'line' events. Each time the user enters a complete line, the registered handler runs and prints the line in uppercase.",
+    "source": "page62"
+  },
+  {
+    "id": "g035",
+    "query": "What is a transform stream?",
+    "ideal_answer": "A transform stream behaves as both a readable and writable stream. Data can be piped into it, transformed chunk by chunk, and then piped onward to another stream.",
+    "source": "page73-74"
+  },
+  {
+    "id": "g036",
+    "query": "Why are streams useful for processing large data sources?",
+    "ideal_answer": "Streams allow data to be processed incrementally instead of requiring the entire large source to be loaded and processed at once. Transform streams are especially useful for cleaning or converting large data sets.",
+    "source": "page73-78"
+  },
+  {
+    "id": "g037",
+    "query": "What does Express middleware do, and what is next() used for?",
+    "ideal_answer": "Middleware can run for requests before route handlers and perform cross-cutting work such as setting CORS headers. next() passes control to the next handler in the configured sequence; without calling it, subsequent handlers will not run.",
+    "source": "page106-109"
+  },
+  {
+    "id": "g038",
+    "query": "Why should CORS handling be moved into middleware?",
+    "ideal_answer": "CORS behavior applies across multiple routes, so placing it in middleware centralizes the logic instead of repeating the same response-header code in every route handler.",
+    "source": "page106-107"
+  },
+  {
+    "id": "g039",
+    "query": "How does Express error-handling middleware differ from normal middleware?",
+    "ideal_answer": "An Express error handler has an extra first argument for the error: function handleError(err, req, res, next). Calling next(err) passes control to the next available error-handling middleware.",
+    "source": "page108-110"
+  },
+  {
+    "id": "g040",
+    "query": "Why does the book avoid returning internal error details directly to API clients?",
+    "ideal_answer": "Error logs can contain sensitive information, so exposing the raw error details to API clients can create a security risk. The example logs the error and returns a generic 'Internal Error' response.",
+    "source": "page109-110"
+  },
+  {
+    "id": "g041",
+    "query": "Why does the book move from filesystem persistence to MongoDB for production-style applications?",
+    "ideal_answer": "With multiple application servers, each server has its own local filesystem. A product created on one server would not automatically be visible to clients connected to another. A shared database provides centralized persistence.",
+    "source": "page116-117"
+  },
+  {
+    "id": "g042",
+    "query": "How does the book define a Mongoose product schema with indexed tags?",
+    "ideal_answer": "The example defines tags as an array of strings using [String] and sets index: true so MongoDB can efficiently find products containing a specified tag without scanning every document.",
+    "source": "page122-124"
+  },
+  {
+    "id": "g043",
+    "query": "How does Mongoose validation help the product API?",
+    "ideal_answer": "Mongoose schema rules can require fields and validate formats such as URLs. Invalid input produces descriptive validation errors before invalid documents are persisted.",
+    "source": "page130-134"
+  },
+  {
+    "id": "g044",
+    "query": "What does the ref option do in the book's Order model?",
+    "ideal_answer": "The ref option identifies the model associated with stored product IDs. In the example, each order product ID references the Product model, allowing Mongoose to resolve the IDs into product objects when populated.",
+    "source": "page136-137"
+  },
+  {
+    "id": "g045",
+    "query": "What do populate() and exec() do in the order lookup example?",
+    "ideal_answer": "populate('products') causes Mongoose to fetch the associated Product documents instead of leaving the products field as only stored IDs, and exec() executes the query.",
+    "source": "page137"
+  },
+  {
+    "id": "g046",
+    "query": "Why does the book hash passwords with bcrypt before saving users?",
+    "ideal_answer": "Passwords should not be stored in plain text. The example hashes the password with bcrypt before saving the user. When editing a user, the password is rehashed only if it has changed so it is not hashed twice.",
+    "source": "page171-172"
+  },
+  {
+    "id": "g047",
+    "query": "How does the book protect admin routes when using JWT authentication?",
+    "ideal_answer": "The server verifies the JWT, checks the decoded username, and allows the request to continue only when the username is 'admin'. Otherwise it creates an Unauthorized error with status code 401.",
+    "source": "page165-166"
+  },
+  {
+    "id": "g048",
+    "query": "How is a JWT typically sent to the server in the book?",
+    "ideal_answer": "The JWT is sent as an HTTP Authorization header using the Bearer scheme, for example Authorization: Bearer <token>. The verification code removes the Bearer prefix before verifying the token.",
+    "source": "page164-166"
+  },
+  {
+    "id": "g049",
+    "query": "What are important security considerations when deploying the Node.js app on a VPS?",
+    "ideal_answer": "The book highlights security updates, user logins, permissions, firewall rules, keeping the application running with tools such as systemd or PM2, and using HTTPS so authentication tokens are encrypted in transit.",
+    "source": "page184-185"
+  },
+  {
+    "id": "g050",
+    "query": "How does the book's CLI use yargs to define and parse a 'list products' command?",
+    "ideal_answer": "yargs defines an endpoint option plus a 'list products' command with tag, limit, and offset options. It provides aliases such as -t, -l, and -o, supplies defaults, converts numeric values to numbers, supports --help, and can require at least one command.",
+    "source": "page221-224"
+  }
+]

@@ -1,0 +1,394 @@
+(PROJECT_RAG) rajan@test-server:~/PROJECT_RAG$ python -m evaluation.retriver_eval
+Golden dataset size: 50
+Query: Why was Node.js created, according to the book? | Retrieved: 5
+Query: What is npm and why is Node.js's small core-module philosoph | Retrieved: 5
+Query: What types of projects does the book identify as particularl | Retrieved: 5
+Query: When does the book say Node.js may not be the best choice? | Retrieved: 5
+Query: What is a key difference between JavaScript running in Node. | Retrieved: 5
+Query: How does a minimal Node.js HTTP server use the core http mod | Retrieved: 5
+Query: What does process.env contain in Node.js? | Retrieved: 5
+Query: What are req and res in an http.createServer request listene | Retrieved: 5
+Query: How does the book return JSON from a core Node.js HTTP serve | Retrieved: 5
+Query: How is basic routing implemented with Node.js core http in t | Retrieved: 5
+Query: What does HTTP status 404 mean in the book's routing example | Retrieved: 5
+Query: How does the book implement a dynamic /echo endpoint using c | Retrieved: 5
+Query: What does querystring.parse() return for a query string such | Retrieved: 5
+Query: How does the book serve static files with Node.js core modul | Retrieved: 5
+Query: Why is fs.createReadStream().pipe(res) useful for static fil | Retrieved: 5
+Query: What does Express provide compared with Node.js core http in | Retrieved: 5
+Query: How does app.get('/json', respondJson) differ from the earli | Retrieved: 5
+Query: What does Express's res.json() do? | Retrieved: 5
+Query: Where does Express expose parsed query parameters? | Retrieved: 5
+Query: How does the Express wildcard route app.get('/static/*', res | Retrieved: 5
+Query: Why does the book use Server-Sent Events (SSE) for the chat  | Retrieved: 5
+Query: What is the role of EventSource in the book's chat client? | Retrieved: 5
+Query: What is the Node.js callback convention for asynchronous API | Retrieved: 5
+Query: Why does Node.js use asynchronous filesystem operations? | Retrieved: 5
+Query: What is a Promise in the book's explanation? | Retrieved: 5
+Query: How do then() and catch() differ when working with promises? | Retrieved: 5
+Query: Why can a naive forEach() with asynchronous fs.readFile() ca | Retrieved: 5
+Query: What problem does Promise.all() solve in the book's director | Retrieved: 5
+Query: What is the relationship between async/await and promises? | Retrieved: 5
+Query: Why must await be used inside an async function in the book' | Retrieved: 5
+Query: How does async/await simplify error handling? | Retrieved: 5
+Query: Why is Promise.all() needed after using map() with async cal | Retrieved: 5
+Query: How are event emitters different from callbacks and promises | Retrieved: 5
+Query: How does readline demonstrate event emitters in the book? | Retrieved: 5
+Query: What is a transform stream? | Retrieved: 5
+Query: Why are streams useful for processing large data sources? | Retrieved: 5
+Query: What does Express middleware do, and what is next() used for | Retrieved: 5
+Query: Why should CORS handling be moved into middleware? | Retrieved: 5
+Query: How does Express error-handling middleware differ from norma | Retrieved: 5
+Query: Why does the book avoid returning internal error details dir | Retrieved: 5
+Query: Why does the book move from filesystem persistence to MongoD | Retrieved: 5
+Query: How does the book define a Mongoose product schema with inde | Retrieved: 5
+Query: How does Mongoose validation help the product API? | Retrieved: 5
+Query: What does the ref option do in the book's Order model? | Retrieved: 5
+Query: What do populate() and exec() do in the order lookup example | Retrieved: 5
+Query: Why does the book hash passwords with bcrypt before saving u | Retrieved: 5
+Query: How does the book protect admin routes when using JWT authen | Retrieved: 5
+Query: How is a JWT typically sent to the server in the book? | Retrieved: 5
+Query: What are important security considerations when deploying th | Retrieved: 5
+Query: How does the book's CLI use yargs to define and parse a 'lis | Retrieved: 5
+Total test cases: 50
+✨ You're running DeepEval's latest Contextual Recall Metric! (using LangChain Bedrock Judge, strict=False, async_mode=True)...
+✨ You're running DeepEval's latest Contextual Precision Metric! (using LangChain Bedrock Judge, strict=False, async_mode=True)...
+
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ 🚀 DeepEval Evaluation Results                                                                                                    │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_0 (Passed 2 metrics)                                                                                                 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                   │
+│  ❌ test_case_1                                                                                                                   │
+│  ├──   Input:              What is npm and why is Node.js's small core-module philosophy useful?                                  │
+│  │     Actual Output:                                                                                                             │
+│  │     Expected Output:    npm is the package manager bundled with Node.js. Node.js keeps the built-in module collection          │
+│  │                         relatively small to encourage a rich third-party ecosystem and avoid slowing module development        │
+│  │                         through the Node.js release schedule.                                                                  │
+│  └── Metrics                                                                                                                      │
+│       Status ┃ Metric               ┃ Score ┃ Threshold ┃ Reason                                                                  │
+│      ━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│        FAIL  │ Contextual Recall    │ 0.50  │ 0.70      │ The score is 0.50 because sentence 2 about Node.js keeping the          │
+│              │                      │       │           │ built‑in module collection small is backed by node 1 in the retrieval   │
+│              │                      │       │           │ context, while sentence 1 claiming npm is the package manager bundled   │
+│              │                      │       │           │ with Node.js lacks any supporting node.                                 │
+│        PASS  │ Contextual Precision │ 0.75  │ 0.70      │ The score is 0.75 because the top‑ranked node (...                      │
+│                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_2 (Passed 2 metrics)                                                                                                 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_3 (Passed 2 metrics)                                                                                                 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_4 (Passed 2 metrics)                                                                                                 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_5 (Passed 2 metrics)                                                                                                 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                   │
+│  ❌ test_case_6                                                                                                                   │
+│  ├──   Input:              What does process.env contain in Node.js?                                                              │
+│  │     Actual Output:                                                                                                             │
+│  │     Expected Output:    process.env is an object containing the environment variables of the currently running process. The    │
+│  │                         book uses process.env.PORT so the server port can be controlled by the environment.                    │
+│  └── Metrics                                                                                                                      │
+│       Status ┃ Metric               ┃ Score ┃ Threshold ┃ Reason                                                                  │
+│      ━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│        FAIL  │ Contextual Recall    │ 0.50  │ 0.70      │ The score is 0.50 because sentence 1 is supported by node 1 in the      │
+│              │                      │       │           │ retrieval context, while sentence 2 has no supporting node.             │
+│        PASS  │ Contextual Precision │ 1.00  │ 0.70      │ The score is 1.00 because the top‑ranked nodes ...                      │
+│                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_7 (Passed 2 metrics)                                                                                                 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_8 (Passed 2 metrics)                                                                                                 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_9 (Passed 2 metrics)                                                                                                 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_10 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_11 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_12 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_13 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_14 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_15 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_16 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_17 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_18 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_19 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                   │
+│  ❌ test_case_20                                                                                                                  │
+│  ├──   Input:              Why does the book use Server-Sent Events (SSE) for the chat example?                                   │
+│  │     Actual Output:                                                                                                             │
+│  │     Expected Output:    SSE allows the server to push messages to the browser without requiring the browser to repeatedly      │
+│  │                         poll for updates. The book presents SSE as a simpler alternative to WebSockets for this one-way        │
+│  │                         server-to-browser use case.                                                                            │
+│  └── Metrics                                                                                                                      │
+│       Status ┃ Metric               ┃ Score ┃ Threshold ┃ Reason                                                                  │
+│      ━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│        FAIL  │ Contextual Recall    │ 0.50  │ 0.70      │ The score is 0.50 because sentence 1 is directly supported by node 1    │
+│              │                      │       │           │ in the retrieval context, while sentence 2 has no corresponding         │
+│              │                      │       │           │ evidence in any node.                                                   │
+│        PASS  │ Contextual Precision │ 1.00  │ 0.70      │ The score is 1.00 because every retrieved node ...                      │
+│                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_21 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                   │
+│  ❌ test_case_22                                                                                                                  │
+│  ├──   Input:              What is the Node.js callback convention for asynchronous APIs?                                         │
+│  │     Actual Output:                                                                                                             │
+│  │     Expected Output:    In Node.js APIs, the callback is conventionally the last argument, and the callback's first            │
+│  │                         argument is the error (or null when there is no error).                                                │
+│  └── Metrics                                                                                                                      │
+│       Status ┃ Metric               ┃ Score ┃ Threshold ┃ Reason                                                                  │
+│      ━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│        PASS  │ Contextual Recall    │ 1.00  │ 0.70      │ The score is 1.00 because sentence 1 directly m...                      │
+│        FAIL  │ Contextual Precision │ 0.45  │ 0.70      │ The score is 0.45 because irrelevant nodes appear early and             │
+│              │                      │       │           │ intersperse the relevant ones. The first node (rank 1) says it          │
+│              │                      │       │           │ "describes callbacks in Node.js generally" but lacks the error‑first    │
+│              │                      │       │           │ detail, and the third and fourth nodes (ranks 3 and 4) focus on         │
+│              │                      │       │           │ promises or omit the convention, while the relevant nodes are only at   │
+│              │                      │       │           │ ranks 2 and 5. This ranking of non‑relevant passages before and         │
+│              │                      │       │           │ between the useful ones keeps the precision low, but the presence of    │
+│              │                      │       │           │ two correct nodes prevents the score from being lower.                  │
+│                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_23 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_24 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_25 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_26 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_27 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_28 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_29 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_30 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                   │
+│  ❌ test_case_31                                                                                                                  │
+│  ├──   Input:              Why is Promise.all() needed after using map() with async callbacks?                                    │
+│  │     Actual Output:                                                                                                             │
+│  │     Expected Output:    An async callback passed to map() produces promises, so the resulting array contains promises          │
+│  │                         rather than resolved values. Promise.all() converts that array into one promise representing all       │
+│  │                         results, which can then be awaited.                                                                    │
+│  └── Metrics                                                                                                                      │
+│       Status ┃ Metric               ┃ Score ┃ Threshold ┃ Reason                                                                  │
+│      ━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│        FAIL  │ Contextual Recall    │ 0.00  │ 0.70      │ The score is 0.00 because sentence 1 of the expected output cannot be   │
+│              │                      │       │           │ linked to any node in the retrieval context; none of the nodes          │
+│              │                      │       │           │ mention an async callback passed to map() producing promises or         │
+│              │                      │       │           │ Promise.all converting an array to a single promise.                    │
+│        PASS  │ Contextual Precision │ 1.00  │ 0.70      │ The score is 1.00 because the relevant nodes (r...                      │
+│                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_32 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_33 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_34 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_35 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_36 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_37 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_38 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                   │
+│  ❌ test_case_39                                                                                                                  │
+│  ├──   Input:              Why does the book avoid returning internal error details directly to API clients?                      │
+│  │     Actual Output:                                                                                                             │
+│  │     Expected Output:    Error logs can contain sensitive information, so exposing the raw error details to API clients can     │
+│  │                         create a security risk. The example logs the error and returns a generic 'Internal Error' response.    │
+│  └── Metrics                                                                                                                      │
+│       Status ┃ Metric               ┃ Score ┃ Threshold ┃ Reason                                                                  │
+│      ━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│        PASS  │ Contextual Recall    │ 1.00  │ 0.70      │ The score is 1.00 because both sentences in the...                      │
+│        FAIL  │ Contextual Precision │ 0.33  │ 0.70      │ The score is 0.33 because only the third node is relevant – it          │
+│              │                      │       │           │ directly explains that "Error logs often contain sensitive              │
+│              │                      │       │           │ information, and it can be a security risk to expose them to API        │
+│              │                      │       │           │ clients." – while the first, second, fourth, and fifth nodes are        │
+│              │                      │       │           │ irrelevant, discussing response formatting, testing, or validation      │
+│              │                      │       │           │ details without addressing the rationale. Those irrelevant nodes        │
+│              │                      │       │           │ occupy the top ranks, pushing the relevant node down to rank 3, which   │
+│              │                      │       │           │ limits the precision and prevents a higher score.                       │
+│                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_40 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_41 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_42 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                   │
+│  ❌ test_case_43                                                                                                                  │
+│  ├──   Input:              What does the ref option do in the book's Order model?                                                 │
+│  │     Actual Output:                                                                                                             │
+│  │     Expected Output:    The ref option identifies the model associated with stored product IDs. In the example, each order     │
+│  │                         product ID references the Product model, allowing Mongoose to resolve the IDs into product objects     │
+│  │                         when populated.                                                                                        │
+│  └── Metrics                                                                                                                      │
+│       Status ┃ Metric               ┃ Score ┃ Threshold ┃ Reason                                                                  │
+│      ━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│        PASS  │ Contextual Recall    │ 1.00  │ 0.70      │ The score is 1.00 because the single sentence i...                      │
+│        FAIL  │ Contextual Precision │ 0.58  │ 0.70      │ The score is 0.58 because the top-ranked node (rank 1) is irrelevant    │
+│              │                      │       │           │ – its reason says "The passage describes orders containing an array     │
+│              │                      │       │           │ of product IDs ... but it never mentions the `ref` option" – while      │
+│              │                      │       │           │ the relevant nodes appear at ranks 2 and 3. Additional irrelevant       │
+│              │                      │       │           │ nodes at ranks 4 and 5 further dilute the ranking, so relevant nodes    │
+│              │                      │       │           │ aren't consistently higher than irrelevant ones, preventing a higher    │
+│              │                      │       │           │ precision score.                                                        │
+│                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_44 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_45 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_46 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                   │
+│  ❌ test_case_47                                                                                                                  │
+│  ├──   Input:              How is a JWT typically sent to the server in the book?                                                 │
+│  │     Actual Output:                                                                                                             │
+│  │     Expected Output:    The JWT is sent as an HTTP Authorization header using the Bearer scheme, for example Authorization:    │
+│  │                         Bearer <token>. The verification code removes the Bearer prefix before verifying the token.            │
+│  └── Metrics                                                                                                                      │
+│       Status ┃ Metric               ┃ Score ┃ Threshold ┃ Reason                                                                  │
+│      ━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│        PASS  │ Contextual Recall    │ 1.00  │ 0.70      │ The score is 1.00 because sentence 1 about send...                      │
+│        FAIL  │ Contextual Precision │ 0.58  │ 0.70      │ The score is 0.58 because the first node (rank 1) is irrelevant – it    │
+│              │                      │       │           │ "does not mention how the JWT is sent to the server" – and appears      │
+│              │                      │       │           │ before the two relevant nodes (ranks 2 and 3) that explicitly           │
+│              │                      │       │           │ describe reading the token from `req.headers.authorization` and using   │
+│              │                      │       │           │ the Authorization header with a Bearer scheme. The later irrelevant     │
+│              │                      │       │           │ nodes (ranks 4 and 5) further lower the precision. While relevant       │
+│              │                      │       │           │ nodes are correctly placed at ranks 2‑3, the early and subsequent       │
+│              │                      │       │           │ irrelevant nodes prevent a higher score.                                │
+│                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                   │
+│  ❌ test_case_48                                                                                                                  │
+│  ├──   Input:              What are important security considerations when deploying the Node.js app on a VPS?                    │
+│  │     Actual Output:                                                                                                             │
+│  │     Expected Output:    The book highlights security updates, user logins, permissions, firewall rules, keeping the            │
+│  │                         application running with tools such as systemd or PM2, and using HTTPS so authentication tokens are    │
+│  │                         encrypted in transit.                                                                                  │
+│  └── Metrics                                                                                                                      │
+│       Status ┃ Metric               ┃ Score ┃ Threshold ┃ Reason                                                                  │
+│      ━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  │
+│        PASS  │ Contextual Recall    │ 1.00  │ 0.70      │ The score is 1.00 because sentence 1 is directl...                      │
+│        FAIL  │ Contextual Precision │ 0.33  │ 0.70      │ The score is 0.33 because the only relevant node appears at rank 3,     │
+│              │                      │       │           │ while the top two nodes are irrelevant. The first node says it "does    │
+│              │                      │       │           │ not list the specific considerations" and the second node "focuses on   │
+│              │                      │       │           │ zero‑downtime deployment and process management, with no mention of     │
+│              │                      │       │           │ security updates, user logins, permissions, firewall rules,             │
+│              │                      │       │           │ systemd/PM2, or HTTPS." These irrelevant nodes outrank the relevant     │
+│              │                      │       │           │ third node, which "directly lists the relevant security                 │
+│              │                      │       │           │ considerations," lowering the contextual precision.                     │
+│                                                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ ✅ test_case_49 (Passed 2 metrics)                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Aggregate Metrics                                                                                                                 │
+│                                                                                                                                   │
+│  Metric                              ┃ Average Score            ┃ Pass Rate                                          ┃ Total      │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━ │
+│  Contextual Recall                   │ 0.95                     │ 92.00% | passed=46 | failed=4                      │ 50         │
+│  Contextual Precision                │ 0.90                     │ 90.00% | passed=45 | failed=5                      │ 50         │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+
+⚠ WARNING: No prompts logged.
+» Log prompts to evaluate and optimize your prompt templates and models.
+
+================================================================================
+
+
+✓ Evaluation completed 🎉! (time taken: 136.97s | token cost: None)
+» Test Results (50 total tests):
+   » Pass Rate: 82.0% | Passed: 41 | Failed: 9
+
+ ================================================================================ 
+
+» Want to share evals with your team, or a place for your test cases to live? ❤️ 🏡
+  » Run 'deepeval view' to analyze and save testing results on Confident AI.
+
+
+
+============================================================
+retriever  (per-metric summary)
+============================================================
+  Contextual Recall          pass_rate=   92%  avg=0.95  n=50
+  Contextual Precision       pass_rate=   90%  avg=0.90  n=50
+============================================================
+(PROJECT_RAG) rajan@test-server:~/PROJECT_RAG$  Run 'deepeval view'
+Command 'Run' not found, did you mean:
+  command 'zun' from deb python3-zunclient (5.3.0-0ubuntu1)
+Try: sudo apt install <deb name>
+(PROJECT_RAG) rajan@test-server:~/PROJECT_RAG$ 
